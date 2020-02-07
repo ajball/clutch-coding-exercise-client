@@ -1,11 +1,19 @@
-/* eslint-env node */
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
-    // Add options here
+    name: 'clutch-coding-exercise-client/app',
+    outputPaths: {
+      app: {
+        html: 'index.html',
+        css: {
+          'app': '/assets/project.css'
+        },
+        js: '/assets/project.js'
+      }
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
