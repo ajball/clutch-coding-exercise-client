@@ -9,9 +9,9 @@ module.exports = function(defaults) {
       app: {
         html: 'index.html',
         css: {
-          'app': '/assets/project.css'
+          'app': '/assets/clutch-coding-exercise-client.css'
         },
-        js: '/assets/project.js'
+        js: '/assets/clutch-coding-exercise-client.js'
       }
     }
   });
