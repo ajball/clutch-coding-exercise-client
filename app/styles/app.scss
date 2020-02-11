@@ -1,0 +1,67 @@
+@import 'ember-paper';
+
+body.ember-application {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 100px 20px;
+
+  md-list-item.md-2-line {
+    margin: 10px 0;
+    border: 1px solid #eee;
+    border-radius: 5px;
+
+    .md-no-style {
+      display: flex;
+      align-items: center;
+
+      .stock-symbol {
+        font-weight: 600;
+        font-size: 22px;
+      }
+
+      .stock-price {
+        font-weight: 500;
+        font-size: 15px;
+        color: #929598;
+      }
+    }
+  }
+}
+
+.stocks-container {
+  width: 100%;
+
+  .not-watching {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    md-icon {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.remove-button {
+  md-icon {
+    color: #C2555E;
+  }
+}
+
+.success-toast > .md-toast-content {
+  background-color: #6CA693;
+}
+
+.danger-toast > .md-toast-content {
+  background-color: #C2555E;
+}
+
+ul.ember-power-select-options:not(.md-autocomplete-suggestions) {
+  list-style-type: none;
+  padding-left: 15px;
+}
