@@ -1,57 +1,27 @@
-# clutch-coding-exercise-client
+# Clutch Stock Watcher (Front-End)
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+An Ember Octane client that consumes the Scala/Play2 stock watcher backend service
 
-## Prerequisites
+## Prerequisites & Assumptions
 
-You will need the following things properly installed on your computer.
+- You are working on MacOS
+- You have [homebrew](https://brew.sh/) installed
+- You have node installed (`brew install node`)
+	- The app was able to run on node `v8.15.0` and `v12.14.1`. I haven't tried other versions
+	- In case you run into node or npm related errors, I'd recommend using [node version manager](https://github.com/nvm-sh/nvm) to quickly switch between node versions on your machine
+- You have ember installed (`npm install -g ember-cli`)
+	- Output when I run `ember --version` ==> `ember-cli: 3.15.2`
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
-* [Ember CLI](https://ember-cli.com/)
-* [Google Chrome](https://google.com/chrome/)
+###Steps to boot up the Ember app
+Start the [backend stock watcher service](https://github.com/ajball/clutch-coding-exercise/blob/master/README.md) first then...
 
-## Installation
-
-* `git clone <repository-url>` this repository
-* `cd clutch-coding-exercise-client`
-* `npm install`
-
-## Running / Development
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Linting
-
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+1. Clone this repo locally
+	- `git clone https://github.com/ajball/clutch-coding-exercise-client.git`
+2. Navigate to the project root dir
+	-  `cd clutch-coding-exercise-client`
+3. Download all project dependencies
+	- `npm i`
+4. Start the app
+	- `ember serve` or `ember s`
+	- Make sure you see `Build successful – Serving on http://localhost:4200/` and `Proxying to http://127.0.0.1:9000` in the build console output
+5. Open `http://localhost:4200` in a browser (I recommend Chrome)
