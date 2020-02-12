@@ -1,11 +1,11 @@
 {
   "name": "clutch-coding-exercise-client",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
-  "description": "Small description for clutch-coding-exercise-client goes here",
+  "description": "Real-time stock watcher",
   "repository": "",
   "license": "MIT",
-  "author": "",
+  "author": "Andrew Ball",
   "directories": {
     "doc": "doc",
     "test": "tests"

@@ -48,6 +48,9 @@ body.ember-application {
 }
 
 .remove-button {
+  min-width: 36px;
+  border-radius: 50%;
+
   md-icon {
     color: #C2555E;
   }

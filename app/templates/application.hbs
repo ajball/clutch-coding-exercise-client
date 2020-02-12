@@ -17,13 +17,9 @@
           <h3 class="stock-symbol">{{stock.symbol}}</h3>
           <h4 class="stock-price">{{stock.displayPrice}}</h4>
         </div>
-        {{#controls.button
-                class="remove-button"
-                secondary=true
-                iconButton=true
-                onClick=(fn this.removeStock stock)}}
+        <controls.button class="remove-button" @secondary={{true}} iconButton={{true}} @onClick={{fn this.removeStock stock}}>
           <PaperIcon @icon="close"></PaperIcon>
-        {{/controls.button}}
+        </controls.button>
       </PaperItem>
     {{else}}
       <div class="not-watching">
