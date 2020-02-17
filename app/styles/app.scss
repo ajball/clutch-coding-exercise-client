@@ -125,7 +125,7 @@ $mention-helpbar-height: 32px;
       }
     }
 
-    ul.users {
+    ul.options {
       list-style-type: none;
       margin: $mention-helpbar-height 0 0 0;
       padding: 0;
@@ -134,35 +134,25 @@ $mention-helpbar-height: 32px;
       overflow-y: auto;
       max-height: calc(350px - #{$mention-helpbar-height});
 
-      li.user {
+      li.option {
         display: flex;
         align-items: center;
         padding: 5px 22px 5px 11px;
         white-space: nowrap;
 
-        .full-name {
+        .primary {
           color: rgb(20, 23, 26);
           font-weight: 600;
         }
 
-        .username {
+        .subtext {
           position: relative;
           top: 1px;
         }
 
         &:hover {
           background: #eee;
-          //color: #fff;
-          //text-shadow: 0 1px rgba(0,0,0,.1);
           cursor: pointer;
-
-          .full-name {
-            //color: #fff;
-          }
-
-          .username {
-            //color: #fff;
-          }
         }
       }
     }
@@ -245,7 +235,8 @@ span.plain {
 
 .hint {
   @extend .subtext;
-  font-size: 12px;
+  position: relative;
+  top: 3px;
 }
 
 .font-weight-600 {

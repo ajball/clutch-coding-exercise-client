@@ -10,7 +10,7 @@ export default class MentionableInputComponent extends Component {
   @tracked
   enableMentions = true;
   @tracked
-  mentionableUsers = A([]);
+  mentionableOptions = A([]);
 
   get value() {
     return this.args.value;
@@ -53,19 +53,19 @@ export default class MentionableInputComponent extends Component {
   }
 
   @action
-  mentionUser(userToMention) {
-    const updatedTextWithMention = this.addMentionToText(this.value, this.currentMention, userToMention.username);
-    if (!this.alreadyMentioned.includes(`@${userToMention.username}`)) {
-      this.alreadyMentioned.pushObject(`@${userToMention.username}`);
+  doMention(optionDisplayText) {
+    const updatedTextWithMention = this.addMentionToText(this.value, this.currentMention, optionDisplayText);
+    if (!this.alreadyMentioned.includes(`@${optionDisplayText}`)) {
+      this.alreadyMentioned.pushObject(`@${optionDisplayText}`);
     }
     this.args.onChange(updatedTextWithMention);
 
-    this.mentionableUsers = [];
+    this.mentionableOptions = [];
     this.textAreaElement.focus();
   }
   @action
-  closeMentionsDropdown() {
-    this.mentionableUsers = [];
+  closeOptionsDropdown() {
+    this.mentionableOptions = [];
     this.enableMentions = false;
   }
   @action
@@ -82,7 +82,7 @@ export default class MentionableInputComponent extends Component {
   keyDown(e) {
     if (e.key === 'Escape') {
       this.enableMentions = false;
-      this.mentionableUsers = [];
+      this.mentionableOptions = [];
     }
   }
   get currentMention() {
@@ -119,20 +119,11 @@ export default class MentionableInputComponent extends Component {
   setTextAreaWrapperElement(element) {
     this.textAreaWrapperEl = element;
   }
-  @action
-  setMentionsDropdownTopPosition(mentionsDropdownEl) {
-    const height = this.getTextAreaHeight();
-    const newTop = height.substr(0, height.length - 2); // - 2 to remove 'px'
-    mentionsDropdownEl.style.top = (+newTop + 3) + 'px'; // + 2 because the dropdown looks a little better when it's off the textarea slightly
-  }
   get textAreaElement() {
     return this.textAreaWrapperEl ? this.textAreaWrapperEl.querySelector('textarea') : {};
   }
   getCursorPosition() {
     return this.textAreaElement.selectionStart;
-  }
-  getTextAreaHeight() {
-    return this.textAreaElement.style.height;
   }
 }
 

@@ -1,0 +1,31 @@
+<div class="possible-mentions" data-test="possible-mentions"
+  {{did-insert this.setMentionsDropdownTopPosition @currentMention}}
+  {{did-update this.setMentionsDropdownTopPosition @currentMention}}>
+  <div class="help-bar">
+    <span class="matching-text mr-auto">
+      Users matching <strong>"{{@currentMention}}"</strong>
+    </span>
+    <span class="close-action">
+      {{#if (media 'isMobileDevice')}}
+        <span class="close" role="button" {{on 'click' @hideOptions}}>
+          <PaperIcon @icon={{'close'}} @size={{20}} />
+        </span>
+      {{else}}
+        <strong>esc</strong> to dismiss
+      {{/if}}
+    </span>
+  </div>
+  <ul class="options">
+    {{#each @options as |option|}}
+      <li class="option" role="button" {{on 'click' (fn @doMention (get option "username"))}} data-test-mention-option>
+        <span class="avatar-rounded-small mr-2"></span>
+        <span class="primary mr-2" data-test-primary>{{get option "name"}}</span>
+        <span class="subtext" data-test-subtext>{{get option "username"}}</span>
+      </li>
+    {{else}}
+      <li class="option" data-test-no-mention-options-text>
+        No results found matching <span class="ml-1 font-weight-600">{{@currentMention}}</span>
+      </li>
+    {{/each}}
+  </ul>
+</div>

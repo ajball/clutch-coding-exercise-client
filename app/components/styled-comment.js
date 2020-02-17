@@ -53,7 +53,8 @@ export default class StyledCommentComponent extends Component {
   }
   setReplacementTextWidth() {
     if (this.replacementTextEl) {
-      this.replacementTextEl.style.width = this.textAreaWidth;
+      const widthFloat = parseFloat(this.textAreaWidth);
+      this.replacementTextEl.style.width = `${widthFloat - 4}px`;
     }
   }
   get textAreaWidth() {
