@@ -11,33 +11,44 @@ export default class Application extends Controller {
   @service paperToaster;
   stockOptions = [];
   watchedStocks = A([]);
+  emptyArray = A([]);
   selectedStock = null;
   @tracked
   isConnected = false;
 
+  @action
+  commentChanged(newText) {
+    this.set('newCommentText', newText);
+  }
+
   constructor() {
     super(...arguments);
-    const websocket = this.stockService.watch();
-    websocket.on('message', (event) => {
-      const updatedStock = JSON.parse(event.data);
-      const foundStock = this.watchedStocks.find(stock => stock.symbol === updatedStock.symbol);
-      if (foundStock) {
-        foundStock.price = updatedStock.price;
-      } else {
-        this.watchedStocks.pushObject(new Stock({
-          symbol: updatedStock.symbol,
-          name: null,
-          price: updatedStock.price
-        }));
-      }
-    });
-
-    websocket.on('open', () => this.isConnected = true);
-    websocket.on('close', () => {
-      this.isConnected = false;
-      this.set('watchedStocks', A([]));
-    });
+    // const websocket = this.stockService.watch();
+    // websocket.on('message', (event) => {
+    //   const updatedStock = JSON.parse(event.data);
+    //   const foundStock = this.watchedStocks.find(stock => stock.symbol === updatedStock.symbol);
+    //   if (foundStock) {
+    //     foundStock.price = updatedStock.price;
+    //   } else {
+    //     this.watchedStocks.pushObject(new Stock({
+    //       symbol: updatedStock.symbol,
+    //       name: null,
+    //       price: updatedStock.price
+    //     }));
+    //   }
+    // });
+    //
+    // websocket.on('open', () => this.isConnected = true);
+    // websocket.on('close', () => {
+    //   this.isConnected = false;
+    //   this.set('watchedStocks', A([]));
+    // });
   }
+
+  @task(function * (currentMention) {
+    yield timeout(150);
+    this.set('userMentions', currentMention ? yield findAllUsers() : []);
+  }).restartable() searchUsersToMention;
 
   @task(function * (searchTerm) {
     yield timeout(300);
@@ -79,4 +90,18 @@ export default class Application extends Controller {
       position: 'top right'
     });
   }
+}
+
+import { User } from 'clutch-coding-exercise-client/app/models/user';
+import RSVP from 'rsvp';
+
+function findAllUsers() {
+  return new RSVP.Promise( (resolve) => {
+    resolve([
+      new User({ name: 'Andrew Ball', username: 'ajball' }),
+      new User({ name: 'Shauna Robertson', username: 'slauna' }),
+      new User({ name: 'Will Henry', username: 'will' }),
+      new User({ name: 'Janine Henry', username: 'janine' })
+    ])
+  });
 }

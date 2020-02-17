@@ -1,0 +1,53 @@
+<PaperInput
+        @textarea={{true}}
+        @block={{true}}
+        @label={{this.label}}
+        @maxlength={{1000}}
+        @passThru={{hash maxRows=4}}
+        @required={{@required}}
+        @value={{@value}}
+        @onChange={{fn this.onTextChange}}
+        @spellcheck={{false}}
+        @onKeyDown={{fn this.keyDown}}
+        {{did-insert this.setTextAreaWrapperElement}}>
+  {{#if this.showHint}}
+    <div class="hint">Type '{{this.specialCharacter}}' to search for a user to mention</div>
+  {{/if}}
+  <StyledComment
+          @commentText={{@value}}
+          @existingMentions={{this.alreadyMentioned}}
+          @mentionPattern={{this.mentionPattern}}
+          @textAreaElement={{this.textAreaElement}}>
+  </StyledComment>
+  {{#if (and this.currentMention this.enableMentions)}}
+    <div class="possible-mentions" data-test="possible-mentions"
+      {{did-insert this.setMentionsDropdownTopPosition @value}}
+      {{did-update this.setMentionsDropdownTopPosition @value}}>
+      <div class="help-bar">
+        <span class="matching-text mr-auto">Users matching <strong>"{{this.currentMention}}"</strong></span>
+        <span class="close-action">
+          {{#if (media 'isMobileDevice')}}
+            <span class="close" role="button" {{on 'click' this.closeMentionsDropdown}}>
+              <PaperIcon @icon={{'close'}} @size={{20}} />
+            </span>
+          {{else}}
+            <strong>esc</strong> to dismiss
+          {{/if}}
+        </span>
+      </div>
+      <ul class="users">
+        {{#each @mentionableUsers as |user|}}
+          <li class="user" role="button" {{on 'click' (fn this.mentionUser user)}} data-test-mention-option>
+            <span class="avatar-rounded-small mr-2"></span>
+            <span class="full-name mr-2" data-test-user-fullname>{{user.name}}</span>
+            <span class="username subtext" data-test-username>{{user.username}}</span>
+          </li>
+        {{else}}
+          <li class="user" data-test-no-mention-options-text>
+            No users found matching <span class="ml-1 font-weight-600">{{this.currentMention}}</span>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+</PaperInput>
