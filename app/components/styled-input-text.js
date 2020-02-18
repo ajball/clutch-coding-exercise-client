@@ -3,8 +3,8 @@ import { htmlSafe } from '@ember/string';
 import { action } from '@ember/object';
 import { addEventListener, debounceTask, runDisposables } from "ember-lifeline";
 
-export default class StyledCommentComponent extends Component {
-  replacementTextEl; // element reference modifier to replacement text element
+export default class StyledInputTextComponent extends Component {
+  replacementTextEl; // reference modifier to replacement text element
 
   constructor() {
     super(...arguments);
@@ -48,13 +48,13 @@ export default class StyledCommentComponent extends Component {
   // ===================== DOM helper functions =====================
 
   @action
-  setReplacementTextElement(element) {
+  setStyledInputTextReference(element) {
     this.replacementTextEl = element;
   }
   setReplacementTextWidth() {
     if (this.replacementTextEl) {
       const widthFloat = parseFloat(this.textAreaWidth);
-      this.replacementTextEl.style.width = `${widthFloat - 4}px`;
+      this.replacementTextEl.style.width = `${widthFloat - 4}px`; // -4 to account for textarea horizontal padding
     }
   }
   get textAreaWidth() {

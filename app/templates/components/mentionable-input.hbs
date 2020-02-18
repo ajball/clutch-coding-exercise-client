@@ -11,14 +11,16 @@
         @onKeyDown={{fn this.keyDown}}
         {{did-insert this.setTextAreaWrapperElement}}>
   {{#if this.showHint}}
-    <div class="hint">Type "{{this.specialCharacter}}" to search for a user to mention</div>
+    <div class="hint">
+      Type "{{this.specialCharacter}}" to mention
+    </div>
   {{/if}}
-  <StyledComment
+  <StyledInputText
           @commentText={{@value}}
           @existingMentions={{this.alreadyMentioned}}
           @mentionPattern={{this.mentionPattern}}
           @textAreaElement={{this.textAreaElement}}>
-  </StyledComment>
+  </StyledInputText>
   {{#if (and this.currentMention this.enableMentions)}}
     <MentionOptions @currentMention={{this.currentMention}}
                     @options={{@mentionableOptions}}

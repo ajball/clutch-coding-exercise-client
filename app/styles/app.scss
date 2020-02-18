@@ -173,7 +173,7 @@ $mention-helpbar-height: 32px;
     -webkit-text-fill-color: initial;
   }
 
-  .replacement-text {
+  .styled-input {
     width: 100%;
     position: absolute;
     top: 2px;
@@ -235,8 +235,6 @@ span.plain {
 
 .hint {
   @extend .subtext;
-  position: relative;
-  top: 3px;
 }
 
 .font-weight-600 {
@@ -310,5 +308,3 @@ $grid-breakpoints: (
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-

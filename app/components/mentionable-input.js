@@ -71,9 +71,10 @@ export default class MentionableInputComponent extends Component {
   @action
   onTextChange(newValue) {
     this.enableMentions = true;
-    // Only allow one trailing space to prevent nasty styling issues.
-    // An unfortunate, but necessary (and fairly reasonable) compromise
-    newValue = newValue === ' ' ? '' : newValue.replace(/\s\s+/g, ' ');
+    if (newValue === ' ') newValue = '';
+    if (newValue) {
+      newValue = newValue.replace(/\s\s+/g, ' ');
+    }
     this.args.onChange(newValue);
     this.args.onMentionStarted(this.currentMention);
   }
@@ -112,7 +113,7 @@ export default class MentionableInputComponent extends Component {
 
   // ===================== DOM helper functions =====================
 
-  // element reference modifier to the textarea paper element wrapper
+  // reference modifier to the textarea paper element wrapper
   // Use textarea getter to get a reference to the actual textarea input element
   textAreaWrapperEl;
   @action
