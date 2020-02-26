@@ -12,7 +12,7 @@ An Ember Octane client that consumes the Scala/Play2 stock watcher backend servi
 - You have ember installed (`npm install -g ember-cli`)
 	- Output when I run `ember --version` ==> `ember-cli: 3.15.2`
 
-### Steps to boot up the Ember app
+###Steps to boot up the Ember app
 Start the [backend stock watcher service](https://github.com/ajball/clutch-coding-exercise/blob/master/README.md) first then...
 
 1. Clone this repo locally
