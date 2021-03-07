@@ -1,30 +1,42 @@
 <div class="stocks-container">
   <PaperAutocomplete
-          @disabled={{if this.isConnected false true}}
-          @options={{this.stockOptions}}
-          @searchField={{"symbol"}}
-          @labelPath={{"displayName"}}
-          @search={{perform this.searchForStocks}}
-          @onSelectionChange={{this.onStockSelected}}
-          @selected={{this.selectedStock}}
-          @allowClear={{true}}
-          @placeholder={{"Find a stock to watch"}} />
+    @disabled={{if this.isConnected false true}}
+    @options={{this.stockOptions}}
+    @searchField={{"symbol"}}
+    @labelPath={{"displayName"}}
+    @search={{perform this.searchForStocks}}
+    @onSelectionChange={{this.onStockSelected}}
+    @selected={{this.selectedStock}}
+    @allowClear={{true}}
+    @placeholder={{"Find a stock to watch"}}
+  />
 
   <PaperList>
     {{#each this.watchedStocks as |stock|}}
       <PaperItem class="md-2-line" as |controls|>
         <div class="md-list-item-text">
-          <h3 class="stock-symbol">{{stock.symbol}}</h3>
-          <h4 class="stock-price">{{stock.displayPrice}}</h4>
+          <h3 class="stock-symbol">
+            {{stock.symbol}}
+          </h3>
+          <h4 class="stock-price">
+            {{stock.displayPrice}}
+          </h4>
         </div>
-        <controls.button class="remove-button" @secondary={{true}} iconButton={{true}} @onClick={{fn this.removeStock stock}}>
-          <PaperIcon @icon="close"></PaperIcon>
+        <controls.button
+          class="remove-button"
+          iconButton={{true}}
+          @secondary={{true}}
+          @onClick={{fn this.removeStock stock}}
+        >
+          <PaperIcon @icon="close" />
         </controls.button>
       </PaperItem>
     {{else}}
       <div class="not-watching">
-        <PaperIcon @icon="wifi_off" @size="{{40}}"></PaperIcon>
-        <h4>Not Watching Any Stocks Right Now</h4>
+        <PaperIcon @icon="wifi_off" @size="{{40}}" />
+        <h4>
+          Not Watching Any Stocks Right Now
+        </h4>
       </div>
     {{/each}}
   </PaperList>
